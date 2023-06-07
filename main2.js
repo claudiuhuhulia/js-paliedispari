@@ -1,29 +1,46 @@
 console.log('js-ok')
 
-/* 
-    1. Collego gli elementi del DOM
-    2. creo una function che mi generi un numero casuale da 1 a 5
-
-
-*/
-
-const userNumber = document.getElementById('number');
-const Randomnum =document.getElementById('randomcpu');
-const btngioca= document.getElementById('btngioca');
+const userNumber = document.getElementById('numb');
+const btngioca= document.getElementById('play');
+const choice = document.getElementById('scelta');
+const DOMresult = document.getElementById('result');
 
 let random = 0;
+let cpunumber = 0;
+
 
 function getRandom(min, max){
-    const random = Math.floor(Math.random() * (max - min)) + min;
+    const random = Math.floor(Math.random() * (max - min)  ) + min;
     
     return random;
-    
 }
 
-const number= getRandom(1, 6);
+function isPari(sum){
+    if(sum % 2){
+     return false;
+    }
+    else{
+    return true;
+    }
 
-console.log(number);
+}
 
+btngioca.addEventListener('click', function(){
 
+    const cpunumber = getRandom(1, 6);
+
+    let userchoice = choice.value;
+    let usernum = parseInt(userNumber.value);
+
+    let sum = cpunumber + usernum;
+    
+    console.log(sum)
+ 
+    const result = isPari(sum) ? 'pari' : 'dispari';
+   
+    const winner = userchoice === result ? 'hai vinto tu!' : 'Ha vinto la cpu';
+    
+    DOMresult.innerText= winner;
+})
 
 
